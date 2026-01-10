@@ -7,7 +7,7 @@
   
           ErikGarcíaii@outlook.com
 ----------------------------------------------------------------------------
-## STUDIO CAVERNA (r)
+## STUDIO CAVERNA (R)
 
 The following collection of documents is registered under the license:
                 GNU Free Documentation License
