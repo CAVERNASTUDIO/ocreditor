@@ -1,0 +1,7 @@
+#include "Ico.h"
+
+// Primer icono principal del ejecutable
+IDI_ICON1 ICON "Ico\\OCR.ico"
+
+// Segundo icono adicional embebido en el .exe
+IDI_ICON2 ICON "Ico\\SU.ico"

@@ -1,0 +1,6 @@
+﻿  Ico1.rc
+  OCRedit.cpp
+C:\Users\HP\Desktop\OCRedit\Ico1.rc(3,1): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\HP\Desktop\OCRedit\Ico1.rc(3,11): error C2146: error de sintaxis: falta ';' delante del identificador 'ICON'
+  Wizard.cpp
+  Generando código...
