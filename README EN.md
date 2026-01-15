@@ -5,7 +5,7 @@
 ## Wizard
 **Installation Assistant**
 
-(RUN TO INSTALL THE DEPENDENCIES REQUIRED BY THE SOFTWARE) !
+(RUN TO INSTALL SOFTWARE REQUIREMENTS) !
 
 Route: **_OCRedit/x64/Debug/Wizard.exe_**
 
