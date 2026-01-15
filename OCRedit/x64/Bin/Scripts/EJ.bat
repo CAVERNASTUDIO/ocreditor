@@ -13,7 +13,7 @@ echo 2. OCR Lock
 echo                             "e" to exit
 echo ==============================
 echo Copyright (c) - 2025 Erik Alejandro García Aparicio. all rigths reserved.
-set /p opcion=In the option (1-2): 
+set /p opcion=Selection (1-2): 
 
 if "%opcion%"=="1" goto opcion1
 if "%opcion%"=="2" goto opcion2
@@ -40,6 +40,7 @@ goto menu
 exit /b 0
 
 pause
+
 
 
 
