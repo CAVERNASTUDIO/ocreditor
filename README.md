@@ -1,5 +1,5 @@
 # O C R EDITOR      **_CAVERNA STUDIO RECORDS_**
-**Generador de documentos .pdf a partir de imagenes (.pmg, .jpg, etc.)**
+**Generador de documentos .pdf a partir de imagenes (.png, .jpg, etc.)**
 
 ## Wizard
 **Asistente de instalación**
@@ -25,5 +25,6 @@
 Copyright (C) - 2026 Caverna Studio.
 
 Copyright (C) - 2026 Erik Alejandro García Aparcio. - All right reserved.
+
 
 
