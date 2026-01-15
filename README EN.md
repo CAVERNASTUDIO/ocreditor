@@ -5,7 +5,7 @@
 ## Wizard
 **Installation Assistant**
 
-(RUN TO INSTALL THE DEPENDENCIES REQUIRED BY THE SOFTWARE)
+(RUN TO INSTALL THE DEPENDENCIES REQUIRED BY THE SOFTWARE) !
 
 Route: **_OCRedit/x64/Debug/Wizard.exe_**
 
@@ -17,12 +17,13 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
  Route: **_OCRedit/x64/Bin/OCRedit.exe_**
 
 ### Selection [1]
-- Generates a document (.pdf).
-- Project (.txt) administration arrangement  image sequence. (Image referenced via route in the system or folder).
-- Multi-.pdf documents selected and attached into one documet.
+- Generator document (.pdf).
+- Project (.txt) administration, arrangement image sequence. (Image referenced via route in the system or folder).
+- Multi-.pdf documents selected and attached in one documet.
 
 ### Selection [2]
-- Locks the PDF options to copying and modifications by the user GUI interface.
+- Locks the PDF options copying and modifications by the user GUI interface.
+
 ## Creditos:
 Copyright (C) - 2026 Caverna Studio.
 
