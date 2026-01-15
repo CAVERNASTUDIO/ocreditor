@@ -18,7 +18,7 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
 
 ### Selection [1]
 - Generates a document (.pdf).
-- Project administration arrangement  image sequence. (Image referenced via route in the system or folder).
+- Project (.txt) administration arrangement  image sequence. (Image referenced via route in the system or folder).
 - Multi-.pdf documents selected and attached into one documet.
 
 ### Selection [2]
