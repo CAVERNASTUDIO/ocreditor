@@ -24,7 +24,7 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
 ### Selection [2]
 - Locks the PDF options copying and modifications by the user GUI interface.
 
-## Creditos:
+## Credits:
 Copyright (C) - 2026 Caverna Studio.
 
 Copyright (C) - 2026 Erik Alejandro García Aparcio. - All right reserved.
