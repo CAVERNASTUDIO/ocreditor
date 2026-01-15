@@ -14,7 +14,7 @@
  
  **_OCRedit/x64/Bin/OCRedit.exe_**
  ### Selección [1]
- - Genera un documento (.pdf) a partir de un proyecto (.txt) donde se indica el acomodo de cada imagen en secuencia (se pueden añadir varios documentos .pdf para crear uno solo)
+ - Genera un documento (.pdf) a partir de un proyecto (.txt) donde se indica el acomodo de cada imagen en secuencia.
  - Almacenamiento de Proyectos (Cada imagen se refiere por medio de la ruta de ubicación dentro de el sistema o carpeta).
  - Pueden seleccionarse varios documentos .pdf y adjuntarlos en 1 solo.
 
@@ -25,4 +25,5 @@
 Copyright (C) - 2026 Caverna Studio.
 
 Copyright (C) - 2026 Erik Alejandro García Aparcio. - All right reserved.
+
 
