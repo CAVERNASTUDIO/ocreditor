@@ -414,7 +414,7 @@ control_frame = tk.Frame(main_frame)
 control_frame.pack(side=tk.RIGHT, fill=tk.Y, padx=(8,0))
 
 tk.Label(control_frame, text="Reordenar").pack(pady=(12,2))
-tk.Button(control_frame, text="U", width=12, command=move_selected_up).pack(pady=2)
+tk.Button(control_frame, text="Up", width=12, command=move_selected_up).pack(pady=2)
 tk.Button(control_frame, text="Down", width=12, command=move_selected_down).pack(pady=2)
 tk.Button(control_frame, text="Top", width=12, command=move_selected_top).pack(pady=2)
 tk.Button(control_frame, text="Bottom", width=12, command=move_selected_bottom).pack(pady=2)
@@ -445,7 +445,7 @@ salida_var = tk.StringVar()
 salida_frame = tk.Frame(root)
 salida_frame.pack(fill=tk.X, padx=12, pady=(6,0))
 
-tk.Label(salida_frame, text="Archivo de salida:").pack(side=tk.LEFT, padx=(0,6))
+tk.Label(salida_frame, text="Fileout document:").pack(side=tk.LEFT, padx=(0,6))
 salida_entry = tk.Entry(salida_frame, textvariable=salida_var, width=80)
 salida_entry.pack(side=tk.LEFT, padx=(0,6))
 btn_elegir = tk.Button(salida_frame, text="Select...", command=elegir_destino)
@@ -462,5 +462,6 @@ tk.Label(root, text=help_text, fg="gray", justify=tk.LEFT).pack(pady=(0,12))
 
 
 root.mainloop()
+
 
 
