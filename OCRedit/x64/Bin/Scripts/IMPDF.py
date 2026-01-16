@@ -13,21 +13,22 @@ except Exception:
     PdfWriter = None
     Transformation = None
     RectangleObject = None
-## Tabla de Formatos y Equivalentes en Píxeles (300 dpi)
 
-## | Formato        | Medidas (mm)       | Medidas (pulgadas) | Equivalente en píxeles (300 dpi) |
-## |----------------|--------------------|--------------------|----------------------------------|
-## | Carta (Letter) | 216 × 279 mm       | 8.5 × 11 in        | 2550 × 3300 px                   |
-## | Doble Carta    | 432 × 279 mm       | 17 × 11 in         | 5100 × 3300 px                   |
-## | Oficio (Legal) | 216 × 356 mm       | 8.5 × 14 in        | 2550 × 4200 px                   |
-## | A4             | 210 × 297 mm       | 8.27 × 11.7 in     | 2480 × 3508 px                   |
-## | A3             | 297 × 420 mm       | 11.7 × 16.5 in     | 3508 × 4961 px                   |
-## | Tabloide       | 279 × 432 mm       | 11 × 17 in         | 3300 × 5100 px                   |
+## Tabla de formatos con equivalencia en puntos
 
-# --- Configuración A4 ---
+#| Formato        | Medidas (mm)       | Medidas (pulgadas) | Equivalente en píxeles (300 dpi) | Medidas (pts)            |
+#|----------------|--------------------|--------------------|----------------------------------|--------------------------|
+#| Carta (Letter) | 216 × 279 mm       | 8.5 × 11 in        | 2550 × 3300 px                   | 612 × 792 pts            |
+#| Doble Carta    | 432 × 279 mm       | 17 × 11 in         | 5100 × 3300 px                   | 1224 × 792 pts           |
+#| Oficio (Legal) | 216 × 356 mm       | 8.5 × 14 in        | 2550 × 4200 px                   | 612 × 1008 pts           |
+#| A4             | 210 × 297 mm       | 8.27 × 11.7 in     | 2480 × 3508 px                   | 595 × 842 pts            |
+#| A3             | 297 × 420 mm       | 11.7 × 16.5 in     | 3508 × 4961 px                   | 842 × 1188 pts           |
+#| Tabloide       | 279 × 432 mm       | 11 × 17 in         | 3300 × 5100 px                   | 792 × 1224 pts           |
+
+# --- Configuración ---
 A4_WIDTH_PT = 595.276  # puntos (72 pts = 1 inch) ~210 mm
 A4_HEIGHT_PT = 841.89  # puntos ~297 mm
-TARGET_DPI = 300       # DPI objetivo para la página A4
+TARGET_DPI = 300       # DPI objetivo
 
 def pts_to_pixels(points, dpi=TARGET_DPI):
     inches = points / 72.0
@@ -462,6 +463,7 @@ tk.Label(root, text=help_text, fg="gray", justify=tk.LEFT).pack(pady=(0,12))
 
 
 root.mainloop()
+
 
 
 
