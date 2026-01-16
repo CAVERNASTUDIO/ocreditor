@@ -428,7 +428,7 @@ btn_seleccionar.pack(side=tk.LEFT, padx=6, pady=6)
 btn_eliminar = tk.Button(frame_botones, text="Delete", command=eliminar_seleccion)
 btn_eliminar.pack(side=tk.LEFT, padx=6, pady=6)
 
-btn_limpiar = tk.Button(frame_botones, text="list in white", command=limpiar_lista)
+btn_limpiar = tk.Button(frame_botones, text="List in white", command=limpiar_lista)
 btn_limpiar.pack(side=tk.LEFT, padx=6, pady=6)
 
 # Botones de proyecto
@@ -462,6 +462,7 @@ tk.Label(root, text=help_text, fg="gray", justify=tk.LEFT).pack(pady=(0,12))
 
 
 root.mainloop()
+
 
 
 
