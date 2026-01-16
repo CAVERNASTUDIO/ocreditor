@@ -1,5 +1,5 @@
 # O C R EDITOR      **_CAVERNA STUDIO RECORDS_**
-**PDF document generator from images (.png, .jpg, etc.), A4 format (Letter Size)**
+**PDF document generator from images (.png, .jpg, etc.)**
 
 
 ## Wizard
