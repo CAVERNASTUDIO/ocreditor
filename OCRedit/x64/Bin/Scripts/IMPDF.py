@@ -13,7 +13,18 @@ except Exception:
     PdfWriter = None
     Transformation = None
     RectangleObject = None
+## Tabla de Formatos y Equivalentes en Píxeles (300 dpi)
 
+## | Formato        | Medidas (mm)       | Medidas (pulgadas) | Equivalente en píxeles (300 dpi) |
+## |----------------|--------------------|--------------------|----------------------------------|
+## | Carta (Letter) | 216 × 279 mm       | 8.5 × 11 in        | 2550 × 3300 px                   |
+## | Doble Carta    | 432 × 279 mm       | 17 × 11 in         | 5100 × 3300 px                   |
+## | Oficio (Legal) | 216 × 356 mm       | 8.5 × 14 in        | 2550 × 4200 px                   |
+## | A4             | 210 × 297 mm       | 8.27 × 11.7 in     | 2480 × 3508 px                   |
+## | A3             | 297 × 420 mm       | 11.7 × 16.5 in     | 3508 × 4961 px                   |
+## | Tabloide       | 279 × 432 mm       | 11 × 17 in         | 3300 × 5100 px                   |
+
+---
 # --- Configuración A4 ---
 A4_WIDTH_PT = 595.276  # puntos (72 pts = 1 inch) ~210 mm
 A4_HEIGHT_PT = 841.89  # puntos ~297 mm
@@ -29,12 +40,12 @@ archivos_rutas = []
 # --- UI básicas ---
 def seleccionar_archivos():
     tipos = [
-        ("Imágenes y PDF", "*.jpg *.jpeg *.png *.bmp *.tiff *.tif *.gif *.webp *.pdf"),
-        ("Imágenes", "*.jpg *.jpeg *.png *.bmp *.tiff *.tif *.gif *.webp"),
+        ("Image PDF", "*.jpg *.jpeg *.png *.bmp *.tiff *.tif *.gif *.webp *.pdf"),
+        ("Image", "*.jpg *.jpeg *.png *.bmp *.tiff *.tif *.gif *.webp"),
         ("PDF", "*.pdf"),
-        ("Todos los archivos", "*.*")
+        ("All files", "*.*")
     ]
-    archivos = filedialog.askopenfilenames(title="Selecciona imágenes o PDFs", filetypes=tipos)
+    archivos = filedialog.askopenfilenames(title="Select imagens n PDF", filetypes=tipos)
     for archivo in archivos:
         archivos_rutas.append(archivo)
         lista.insert(tk.END, archivo)
@@ -42,7 +53,7 @@ def seleccionar_archivos():
 def eliminar_seleccion():
     sel = lista.curselection()
     if not sel:
-        messagebox.showinfo("Información", "No hay ningún elemento seleccionado.")
+        messagebox.showinfo("Info", "Select document")
         return
     for index in reversed(sel):
         lista.delete(index)
@@ -55,7 +66,7 @@ def limpiar_lista():
 def elegir_destino():
     escritorio = os.path.join(os.path.expanduser("~"), "Desktop")
     ruta = filedialog.asksaveasfilename(
-        title="Guardar PDF como",
+        title="Save As",
         defaultextension=".pdf",
         initialdir=escritorio,
         filetypes=[("PDF", "*.pdf")]
@@ -66,11 +77,11 @@ def elegir_destino():
 # --- Guardar/abrir/ejecutar proyecto (.txt) ---
 def guardar_proyecto():
     if not archivos_rutas:
-        messagebox.showwarning("Aviso", "La lista está vacía. Añade archivos antes de guardar un proyecto.")
+        messagebox.showwarning("Message", "List empty, add files.")
         return
     escritorio = os.path.join(os.path.expanduser("~"), "Desktop")
     ruta = filedialog.asksaveasfilename(
-        title="Guardar proyecto como",
+        title="Save Proyect As",
         defaultextension=".txt",
         initialdir=escritorio,
         filetypes=[("Texto", "*.txt")]
@@ -79,17 +90,17 @@ def guardar_proyecto():
         return
     try:
         with open(ruta, "w", encoding="utf-8") as f:
-            f.write("# Proyecto de rutas - una ruta por línea\n")
+            f.write("# Routes proyect - one rute by line\n")
             for p in archivos_rutas:
                 f.write(p + "\n")
-        messagebox.showinfo("Éxito", f"Proyecto guardado en:\n{ruta}")
+        messagebox.showinfo("Save", f"Project saved:\n{ruta}")
     except Exception as e:
-        messagebox.showerror("Error", f"No se pudo guardar el proyecto:\n{e}")
+        messagebox.showerror("Error", f"Project could not be saved:\n{e}")
 
 def abrir_proyecto():
     ruta = filedialog.askopenfilename(
-        title="Abrir proyecto (.txt)",
-        filetypes=[("Texto", "*.txt"), ("Todos los archivos", "*.*")]
+        title="Open proyect (.txt)",
+        filetypes=[("Text", "*.txt"), ("All files", "*.*")]
     )
     if not ruta:
         return
@@ -97,7 +108,7 @@ def abrir_proyecto():
         with open(ruta, "r", encoding="utf-8") as f:
             lines = f.readlines()
     except Exception as e:
-        messagebox.showerror("Error", f"No se pudo abrir el archivo:\n{e}")
+        messagebox.showerror("Error", f"File could not be open:\n{e}")
         return
 
     nuevas_rutas = []
@@ -114,13 +125,13 @@ def abrir_proyecto():
             errores.append((i, line))
 
     if errores:
-        msg = "Algunas rutas no existen y fueron omitidas:\n"
+        msg = "Some routes do not exist and were omitted:\n"
         for ln, val in errores[:10]:
             msg += f"Linea {ln}: {val}\n"
         if len(errores) > 10:
             msg += f"...y {len(errores)-10} más.\n"
-        msg += "\n¿Deseas continuar cargando las rutas válidas?"
-        if not messagebox.askyesno("Rutas faltantes", msg):
+        msg += "\n Do you want to continue loading the valid routes?"
+        if not messagebox.askyesno("routes omitted", msg):
             return
 
     # Reemplazar lista actual por las nuevas rutas válidas
@@ -130,12 +141,12 @@ def abrir_proyecto():
         archivos_rutas.append(p)
         lista.insert(tk.END, p)
 
-    messagebox.showinfo("Proyecto cargado", f"Se cargaron {len(nuevas_rutas)} rutas válidas desde:\n{ruta}")
+    messagebox.showinfo("load proyect", f"Document loaded {len(nuevas_rutas)} valid routes:\n{ruta}")
 
 def ejecutar_proyecto():
     ruta = filedialog.askopenfilename(
-        title="Seleccionar proyecto para ejecutar (.txt)",
-        filetypes=[("Texto", "*.txt"), ("Todos los archivos", "*.*")]
+        title="Select proyect (.txt)",
+        filetypes=[("Text", "*.txt"), ("All files", "*.*")]
     )
     if not ruta:
         return
@@ -143,7 +154,7 @@ def ejecutar_proyecto():
         with open(ruta, "r", encoding="utf-8") as f:
             lines = f.readlines()
     except Exception as e:
-        messagebox.showerror("Error", f"No se pudo abrir el archivo:\n{e}")
+        messagebox.showerror("Error", f"Can not open file:\n{e}")
         return
 
     nuevas_rutas = []
@@ -159,17 +170,17 @@ def ejecutar_proyecto():
             errores.append((i, line))
 
     if not nuevas_rutas:
-        messagebox.showwarning("Aviso", "No se encontraron rutas válidas en el proyecto.")
+        messagebox.showwarning("Message", "No found project.")
         return
 
     if errores:
-        msg = "Algunas rutas no existen y fueron omitidas:\n"
+        msg = "Some routes do not exist and were omitted:\n"
         for ln, val in errores[:10]:
             msg += f"Linea {ln}: {val}\n"
         if len(errores) > 10:
             msg += f"...y {len(errores)-10} más.\n"
-        msg += "\nSe ejecutará el proyecto con las rutas válidas. ¿Continuar?"
-        if not messagebox.askyesno("Rutas faltantes", msg):
+        msg += "\nThe project will run with the valid paths. ¿Continue?"
+        if not messagebox.askyesno("Do not fount route", msg):
             return
 
     # Cargar rutas en la lista y en la variable global
@@ -181,7 +192,7 @@ def ejecutar_proyecto():
 
     # Preguntar si desea elegir archivo de salida antes de ejecutar
     if not salida_var.get().strip():
-        if messagebox.askyesno("Salida", "No hay archivo de salida seleccionado. ¿Deseas elegir uno ahora?"):
+        if messagebox.askyesno("out", "select output file."):
             elegir_destino()
 
     # Ejecutar la generación del PDF con las rutas cargadas
@@ -259,17 +270,17 @@ def normalize_pdf_page_to_a4_scale_all(page):
 # --- Generación del PDF final (manteniendo streams vivos) ---
 def generar_pdf():
     if not archivos_rutas:
-        messagebox.showwarning("Aviso", "No se han cargado archivos.")
+        messagebox.showwarning("Message", "Load files.")
         return
 
     if PdfReader is None or PdfWriter is None or Transformation is None or RectangleObject is None:
-        messagebox.showerror("Dependencia faltante", "Instala 'pypdf' y 'Pillow' con: pip install pypdf pillow")
+        messagebox.showerror("Install", "Install 'pypdf' y 'Pillow' with: pip install pypdf pillow")
         return
 
     ruta_pdf = salida_var.get().strip()
     if not ruta_pdf:
         escritorio = os.path.join(os.path.expanduser("~"), "Desktop")
-        ruta_pdf = os.path.join(escritorio, "resultado_a4_scaled.pdf")
+        ruta_pdf = os.path.join(escritorio, "OCREdit Document_a4.pdf")
 
     writer = PdfWriter()
     temp_streams = []
@@ -284,7 +295,7 @@ def generar_pdf():
                         norm = normalize_pdf_page_to_a4_scale_all(page)
                         writer.add_page(norm)
                 except Exception as e:
-                    messagebox.showwarning("Aviso", f"No se pudo leer PDF: {ruta}\n{e}")
+                    messagebox.showwarning("Message", f"Can´t read PDF: {ruta}\n{e}")
             else:
                 try:
                     bio = image_to_a4_pdf_bytes_scale_all(ruta)
@@ -298,14 +309,14 @@ def generar_pdf():
                         norm = normalize_pdf_page_to_a4_scale_all(page)
                         writer.add_page(norm)
                 except Exception as e:
-                    messagebox.showwarning("Aviso", f"No se pudo procesar imagen: {ruta}\n{e}")
+                    messagebox.showwarning("Error", f"image can´t process: {ruta}\n{e}")
 
         with open(ruta_pdf, "wb") as f_out:
             writer.write(f_out)
 
-        messagebox.showinfo("Éxito", f"PDF generado exitosamente en: {ruta_pdf}")
+        messagebox.showinfo("Message", f"PDF generated in: {ruta_pdf}")
     except Exception as e:
-        messagebox.showerror("Error", f"Ocurrió un error al generar el PDF:\n{e}")
+        messagebox.showerror("Error", f"PDF Can´t generated:\n{e}")
     finally:
         for s in temp_streams:
             try:
@@ -385,7 +396,7 @@ def move_selected_bottom():
 
 # --- Interfaz gráfica ---
 root = tk.Tk()
-root.title("IMG PDF A4")
+root.title("IMG PDF")
 root.geometry("900x560")
 
 main_frame = tk.Frame(root)
@@ -404,31 +415,31 @@ control_frame = tk.Frame(main_frame)
 control_frame.pack(side=tk.RIGHT, fill=tk.Y, padx=(8,0))
 
 tk.Label(control_frame, text="Reordenar").pack(pady=(12,2))
-tk.Button(control_frame, text="Subir", width=12, command=move_selected_up).pack(pady=2)
-tk.Button(control_frame, text="Bajar", width=12, command=move_selected_down).pack(pady=2)
-tk.Button(control_frame, text="Mover al Top", width=12, command=move_selected_top).pack(pady=2)
-tk.Button(control_frame, text="Mover al Bottom", width=12, command=move_selected_bottom).pack(pady=2)
+tk.Button(control_frame, text="U", width=12, command=move_selected_up).pack(pady=2)
+tk.Button(control_frame, text="Down", width=12, command=move_selected_down).pack(pady=2)
+tk.Button(control_frame, text="Top", width=12, command=move_selected_top).pack(pady=2)
+tk.Button(control_frame, text="Bottom", width=12, command=move_selected_bottom).pack(pady=2)
 
 frame_botones = tk.Frame(root)
 frame_botones.pack(fill=tk.X, padx=12, pady=(6,0))
 
-btn_seleccionar = tk.Button(frame_botones, text="Seleccionar archivos", command=seleccionar_archivos)
+btn_seleccionar = tk.Button(frame_botones, text="Select Files", command=seleccionar_archivos)
 btn_seleccionar.pack(side=tk.LEFT, padx=6, pady=6)
 
-btn_eliminar = tk.Button(frame_botones, text="Eliminar seleccionado", command=eliminar_seleccion)
+btn_eliminar = tk.Button(frame_botones, text="Delete", command=eliminar_seleccion)
 btn_eliminar.pack(side=tk.LEFT, padx=6, pady=6)
 
-btn_limpiar = tk.Button(frame_botones, text="Limpiar lista", command=limpiar_lista)
+btn_limpiar = tk.Button(frame_botones, text="list in white", command=limpiar_lista)
 btn_limpiar.pack(side=tk.LEFT, padx=6, pady=6)
 
 # Botones de proyecto
-btn_guardar_proy = tk.Button(frame_botones, text="Guardar proyecto", command=guardar_proyecto)
+btn_guardar_proy = tk.Button(frame_botones, text="Save Proyect", command=guardar_proyecto)
 btn_guardar_proy.pack(side=tk.LEFT, padx=6, pady=6)
 
-btn_abrir_proy = tk.Button(frame_botones, text="Abrir proyecto", command=abrir_proyecto)
+btn_abrir_proy = tk.Button(frame_botones, text="Open proyect", command=abrir_proyecto)
 btn_abrir_proy.pack(side=tk.LEFT, padx=6, pady=6)
 
-btn_ejecutar_proy = tk.Button(frame_botones, text="Ejecutar proyecto (.txt)", command=ejecutar_proyecto, bg="#2196F3", fg="white")
+btn_ejecutar_proy = tk.Button(frame_botones, text="Run Proyect (.txt)", command=ejecutar_proyecto, bg="#2196F3", fg="white")
 btn_ejecutar_proy.pack(side=tk.LEFT, padx=6, pady=6)
 
 salida_var = tk.StringVar()
@@ -438,20 +449,18 @@ salida_frame.pack(fill=tk.X, padx=12, pady=(6,0))
 tk.Label(salida_frame, text="Archivo de salida:").pack(side=tk.LEFT, padx=(0,6))
 salida_entry = tk.Entry(salida_frame, textvariable=salida_var, width=80)
 salida_entry.pack(side=tk.LEFT, padx=(0,6))
-btn_elegir = tk.Button(salida_frame, text="Elegir...", command=elegir_destino)
+btn_elegir = tk.Button(salida_frame, text="Select...", command=elegir_destino)
 btn_elegir.pack(side=tk.LEFT)
 
-btn_generar = tk.Button(root, text="Generar PDF (A4 escalado)", command=generar_pdf, bg="#4CAF50", fg="white")
+btn_generar = tk.Button(root, text="Genereted PDF", command=generar_pdf, bg="#4CAF50", fg="white")
 btn_generar.pack(pady=12)
 
 help_text = (
-    "Soportado: imágenes (.jpg .jpeg .png .bmp .tiff .gif .webp) y archivos .pdf.\n"
-    "Todas las entradas se escalan para ajustarse a A4 manteniendo relación de aspecto.\n"
-    "Ordena la lista antes de generar para definir el orden de las páginas.\n"
-    "Puedes guardar/abrir proyectos (.txt) con una ruta por línea. Las líneas que comienzan con # son comentarios.\n"
+    "Image (.jpg .jpeg .png .bmp .tiff .gif .webp) y archivos .pdf.\n"
     "Copiright (C) - 2025 Ing. Erik Alejandro García Aparicio. All right reserved."
 )
 tk.Label(root, text=help_text, fg="gray", justify=tk.LEFT).pack(pady=(0,12))
 
 
 root.mainloop()
+
