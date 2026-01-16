@@ -24,7 +24,6 @@ except Exception:
 ## | A3             | 297 × 420 mm       | 11.7 × 16.5 in     | 3508 × 4961 px                   |
 ## | Tabloide       | 279 × 432 mm       | 11 × 17 in         | 3300 × 5100 px                   |
 
----
 # --- Configuración A4 ---
 A4_WIDTH_PT = 595.276  # puntos (72 pts = 1 inch) ~210 mm
 A4_HEIGHT_PT = 841.89  # puntos ~297 mm
@@ -463,4 +462,5 @@ tk.Label(root, text=help_text, fg="gray", justify=tk.LEFT).pack(pady=(0,12))
 
 
 root.mainloop()
+
 
