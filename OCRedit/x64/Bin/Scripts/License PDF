@@ -1,3 +1,5 @@
+visit https://www.python.org
+
 1. This LICENSE AGREEMENT is between the Python Software Foundation ("PSF"), and
    the Individual or Organization ("Licensee") accessing and otherwise using this
    software ("Python") in source or binary form and its associated documentation.
@@ -37,4 +39,5 @@
    third party.
 
 8. By copying, installing or otherwise using Python, Licensee agrees
+
    to be bound by the terms and conditions of this License Agreement.
