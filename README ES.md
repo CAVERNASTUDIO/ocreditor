@@ -9,6 +9,7 @@
 
 (NECESARIO EJECUTAR PARA INSTALAR LAS DEPENDENCIAS EXIGIDAS POR EL SOFTWARE)
 - Instalación de librerías y herramientas para ejecutar la aplicación OCRedit.
+- Actualiza python instalado.
 
 ## OCREDITOR
  
