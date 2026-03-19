@@ -10,7 +10,7 @@
 
 Route: **_OCRedit/x64/Debug/Wizard.exe_**
 
-- Python installer n' update.
+- Python update.
 - Installation libraries and tools OCRedit application.
 
 ## OCREDITOR
