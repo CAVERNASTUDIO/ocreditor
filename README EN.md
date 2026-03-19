@@ -34,7 +34,7 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
 - ocr default tool, install tesseract-OCR.
 
 ### Selection [5]
-- translator 6 languajes
+- translator 6 languajes, need access internet 
 
 
 **default assistantion:**
