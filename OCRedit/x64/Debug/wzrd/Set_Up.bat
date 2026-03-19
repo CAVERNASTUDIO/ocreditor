@@ -2,8 +2,8 @@
 REM ============================================================
 REM Script para instalar librerías necesarias del proyecto OCR 
 REM Autor: Ing. Erik Alejandro García Aparicio
-REM Fecha: 2025
-REM copyright (c) - 2025 Erik Alejandro García Aparicio 
+REM Fecha: 2025,2026
+REM copyright (c) - 2025,2026 Erik Alejandro García Aparicio 
 REM ============================================================
 
 echo Instalando dependencias de Python para el software...
@@ -31,6 +31,28 @@ pip install joblib
 pip install psutil
 pip install memory-profiler
 
+echo --- Librerías principales ---
+pip install docx2pdf
+pip install fpdf
+pip install pdfplumber
+
+echo  --- Para automatizar Office en Windows ---
+pip install comtypes
+pip install xlwings
+
+echo --- Para conversión multiplataforma con LibreOffice ---
+REM (requiere tener LibreOffice instalado en el sistema)
+pip install unoconv
+
+echo --- Para convertir páginas web a PDF ---
+pip install pdfkit
+pip install weasyprint
+
+echo --- Para manejar audio/video (capturas o transcripciones previas) ---
+pip install moviepy
+pip install pydub
+
+
 REM Bibliotecas de seguridad
 pip install pycryptodome
 pip install cerberus
@@ -52,10 +74,17 @@ pip install python-docx
 pip install python-pptx
 pip install openpyxl
 pip install xlrd
+pip install PyMuPDF
+pip install pytesseract
+pip install pillow
+pip install deep-translator
+pip install argostranslate
+pip install pytesseract
+pip install reportlab pdf2image
 
 echo.
 echo Instalando paquetes: psutil pyusb pybluez
-%PIP_CMD% install psutil pyusb pybluez
+%PIP_CMD% pip install psutil pyusb
 if %ERRORLEVEL% equ 0 (
     echo.
     echo Instalacion completada correctamente.
@@ -101,9 +130,6 @@ python -c "import tkinterdnd2; print('tkinterdnd2 instalado correctamente')"
 
 echo.
 echo [OK] Instalación completada.
-echo Ahora puedes ejecutar tu script principal con:
-echo python tu_script.py
-echo.
 
 pause
 
