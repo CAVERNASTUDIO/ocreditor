@@ -28,7 +28,7 @@
  - Genera un documento .pdf a partir de un proyecto .txt sin formato homogéneo, identifica las dimensiones de la imagen o pdf y los integra en uno solo. 
 
  ### Selección [4]
- - ocrDefault, es necesario instalar **tesseract-OCR** en el computador para ejecutar la herramienta.
+ - ocrDefault, es necesario instalar **[tesseract-OCR](https://github.com/tesseract-ocr/)** en el computador para ejecutar la herramienta.
 
  ### Selección [5]
  - Traductor 6 idiomas (Necesita conexion a internet).
