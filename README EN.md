@@ -31,7 +31,8 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
 - Multi-.pdf documents selected and attached in one documet.
 
 ### Selection [4]
-- ocr default tool, install tesseract-OCR.
+- ocr default tool, install [tesseract-OCR](https://github.com/tesseract-ocr/).
+
 
 ### Selection [5]
 - translator 6 languajes, need access internet.
