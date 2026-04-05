@@ -1,5 +1,6 @@
 # O C R EDITOR      **_CAVERNA STUDIO RECORDS_** _**(Python 3.14.2)**_
-**Generador de documentos .pdf a partir de imagenes (.png, .jpg, etc.)**
+
+**OCR: Reconocimiento óptico de caracteres**
 
 
 ## Wizard
