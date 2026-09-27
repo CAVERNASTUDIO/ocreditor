@@ -13,13 +13,10 @@ The following collection of documents is registered under the license:
                 GNU Free Documentation License
                  Version 1.3, 3 November 2008
                  
- Copyright (c) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
-                 
- Copyright (c)  2021  MR Caverna García- Todos los derechos reservados.
- 
- Copytight (c) 2026 Erik Alejandro García Aparicio.
-
-Copyright (c) 2026 CAVERNA STUDIO - All right Reserved.
+ Copyright (c) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.<br>
+ Copyright (c)  2021  MR Caverna García- Todos los derechos reservados.<br>
+ Copytight (c) 2026 Erik Alejandro García Aparicio.<br>
+Copyright (c) 2026 CAVERNA STUDIO - All right Reserved.<br>
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
