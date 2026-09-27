@@ -1,0 +1,149 @@
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox
+import pikepdf
+
+# Lista de documentos aceptados
+DOCUMENTOS_ACEPTADOS = [".pdf"]
+
+#ICON_PATHS = [
+ #   r"C:\Users\HP\Desktop\Biblioteca\Git\ocreditor\OCRedit\Ico\OCR.ico",
+  #  os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "Ico", "OCR.ico")),
+#]
+
+#def _find_icon_path():
+ #   for p in ICON_PATHS:
+  #      if os.path.exists(p):
+   #         return p
+    #return None
+
+#def _apply_app_icon(root):
+ #   icon_path = _find_icon_path()
+  #  if not icon_path:
+   #     return
+    #try:
+     #   import ctypes
+      #  ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("OCRedit.OCR")
+    #except Exception:
+     #   pass
+   # try:
+    #    root.iconbitmap(icon_path)
+   # except Exception:
+    #    pass
+    #try:
+    #    root.iconbitmap(default=icon_path)
+   # except Exception:
+    #    pass
+
+def proteger_pdf(ruta_pdf, permisos_obj):
+    """
+    Aplica restricciones de seguridad al PDF indicado usando el objeto pikepdf.Permissions recibido.
+    """
+    try:
+        with pikepdf.open(ruta_pdf, allow_overwriting_input=True) as pdf:
+            pdf.save(
+                ruta_pdf,
+                encryption=pikepdf.Encryption(
+                    user="",       # No se requiere contraseña para abrir
+                    owner="",      # No se establece contraseña de propietario
+                    allow=permisos_obj,
+                    R=6            # Cifrado AES-256
+                )
+            )
+        messagebox.showinfo("Finish", "✅ File is protected.")
+    except Exception as e:
+        messagebox.showerror("Error", f"❌ Can't file protect:\n{e}")
+
+def seleccionar_archivo(vars_permisos):
+    """
+    Abre un cuadro de diálogo para seleccionar el archivo PDF y aplica los permisos seleccionados.
+    """
+    ruta_pdf = filedialog.askopenfilename(
+        title="Select document",
+        filetypes=[("Documents PDF", "*.pdf")]
+    )
+
+    if not ruta_pdf:
+        return  # Usuario canceló
+
+    _, extension = os.path.splitext(ruta_pdf)
+    if extension.lower() not in DOCUMENTOS_ACEPTADOS:
+        messagebox.showerror("not is PDF extension ", f"❌ try extension: {', '.join(DOCUMENTOS_ACEPTADOS)}")
+        return
+
+    # Construir objeto pikepdf.Permissions a partir de las variables (True = bloquear en UI)
+    permisos = pikepdf.Permissions(
+        accessibility=not vars_permisos["accessibility"].get(),
+        extract=not vars_permisos["extract"].get(),
+        modify_annotation=not vars_permisos["modify_annotation"].get(),
+        modify_assembly=not vars_permisos["modify_assembly"].get(),
+        modify_form=not vars_permisos["modify_form"].get(),
+        modify_other=not vars_permisos["modify_other"].get(),
+        print_lowres=not vars_permisos["print_lowres"].get(),
+        print_highres=not vars_permisos["print_highres"].get()
+    )
+
+    proteger_pdf(ruta_pdf, permisos)
+
+def main():
+    # Crear ventana principal
+    ventana = tk.Tk()
+    # _apply_app_icon(ventana)
+    ventana.title("Lock")
+    ventana.geometry("420x420")
+    ventana.resizable(False, False)
+
+    # Etiqueta principal
+    etiqueta = tk.Label(ventana, text="Select document n' block configuration", font=("Arial", 12))
+    etiqueta.pack(pady=12)
+
+    # Frame para checkbuttons de permisos
+    frame_permisos = tk.LabelFrame(ventana, text=" Selections block", padx=10, pady=10, font=("Arial", 10))
+    frame_permisos.pack(padx=12, pady=6, fill="both")
+
+    # Variables para cada permiso (True = bloquear)
+    vars_permisos = {
+        "accessibility": tk.BooleanVar(value=True),
+        "extract": tk.BooleanVar(value=True),
+        "modify_annotation": tk.BooleanVar(value=True),
+        "modify_assembly": tk.BooleanVar(value=True),
+        "modify_form": tk.BooleanVar(value=True),
+        "modify_other": tk.BooleanVar(value=True),
+        "print_lowres": tk.BooleanVar(value=True),
+        "print_highres": tk.BooleanVar(value=True)
+    }
+
+    # Crear checkbuttons (cada llamada está en una sola línea para evitar truncados)
+    tk.Checkbutton(frame_permisos, text="Accessibility", variable=vars_permisos["accessibility"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Extract", variable=vars_permisos["extract"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Modify annotation", variable=vars_permisos["modify_annotation"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Modify assembly", variable=vars_permisos["modify_assembly"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Modify form", variable=vars_permisos["modify_form"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Modify other", variable=vars_permisos["modify_other"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Print lowres", variable=vars_permisos["print_lowres"], anchor="w", justify="left").pack(fill="x", pady=2)
+    tk.Checkbutton(frame_permisos, text="Print highres", variable=vars_permisos["print_highres"], anchor="w", justify="left").pack(fill="x", pady=2)
+
+    # Botón para seleccionar archivo y aplicar permisos
+    boton = tk.Button(ventana, text="Select file", command=lambda: seleccionar_archivo(vars_permisos), font=("Arial", 10), bg="#4CAF50", fg="white")
+    boton.pack(pady=14)
+
+    # Texto con formatos aceptados
+    formatos = tk.Label(ventana, text=f"Documents: {', '.join(DOCUMENTOS_ACEPTADOS)}", font=("Arial", 10))
+    formatos.pack(pady=6)
+
+    # Botón para restaurar valores por defecto (bloquear todo)
+    def restaurar_defecto():
+        for v in vars_permisos.values():
+            v.set(True)
+        messagebox.showinfo("Default", "Configuration default.")
+
+    btn_defecto = tk.Button(ventana, text="Default", command=restaurar_defecto, font=("Arial", 9))
+    btn_defecto.pack(pady=6)
+
+    ventana.mainloop()
+
+if __name__ == "__main__":
+    main()
+
+#Copyright (c) - Erik Alejandro García Aparcio. 
+
