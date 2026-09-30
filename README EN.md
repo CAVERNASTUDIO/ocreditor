@@ -35,7 +35,7 @@ Route: **_OCRedit/x64/Debug/Wizard.exe_**
 
 
 ### Selection [5]
-- translator 6 languajes, need access internet.
+- translator 6 languages, need access internet.
 
 
 **default assistantion:**
